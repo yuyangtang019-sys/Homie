@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homie</title>
+  <link rel="stylesheet" href="/static/app.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">H</div>
+        <div>
+          <div class="brand-name">Homie</div>
+          <div class="brand-sub">Qwen3-Max Smart Home Agent</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <a class="nav-item active" href="/">用户操控页</a>
+        <a class="nav-item" href="/logs">日志页</a>
+      </nav>
+      <div class="side-card">
+        <div class="side-title">现在版本</div>
+        <div class="side-text">真实 LLM 接入 + ESP32 硬件融合 + 本地兜底。</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="hero card">
+        <div>
+          <h1>和 Homie 对话，实时控制与自动化一体化</h1>
+          <p>输入一句话：立即控制设备，或生成时间 / 条件规则。支持温度与光照联动。</p>
+        </div>
+        <div class="hero-status">
+          <div class="status-item"><span>时间</span><strong id="current-time">--:--</strong></div>
+          <div class="status-item"><span>温度</span><strong id="current-temp">--</strong></div>
+          <div class="status-item"><span>光照</span><strong id="current-light">--</strong></div>
+          <div class="status-item"><span>有人</span><strong id="current-presence">--</strong></div>
+        </div>
+      </section>
+
+      <section class="grid two">
+        <div class="card">
+          <div class="section-title">Homie 对话控制</div>
+          <textarea id="chat-input" placeholder="例如：把空调打开到23度；每天10点关灯；光照低于100时打开窗帘"></textarea>
+          <div class="actions">
+            <button onclick="previewChat()">预览理解</button>
+            <button onclick="sendChat()">发送给 Homie</button>
+          </div>
+          <pre id="chat-preview" class="preview-box"></pre>
+          <div id="chat-result" class="result-box"></div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">温度 / 光照调控中心</div>
+          <div class="temp-panel">
+            <div class="temp-big"><span id="panel-temp">28</span><small>°C</small></div>
+            <div class="temp-form">
+              <label>环境时间</label>
+              <input id="env-time" value="09:30" />
+              <label>环境温度</label>
+              <input id="env-temp" type="number" value="28" />
+              <label>环境光照</label>
+              <input id="env-light" type="number" value="120" />
+              <label>是否有人（true/false）</label>
+              <input id="env-presence" value="true" />
+            </div>
+          </div>
+          <div class="actions">
+            <button onclick="updateEnvironment()">更新环境</button>
+            <button class="secondary" onclick="evaluateRules()">立即评估规则</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-title">设备控制区</div>
+        <div id="devices" class="device-grid"></div>
+      </section>
+
+      <section class="grid two">
+        <div class="card">
+          <div class="section-title">自动化规则</div>
+          <div id="rules" class="stack"></div>
+        </div>
+
+        <div class="card">
+          <div class="section-title">对话记录</div>
+          <div id="chat-feed" class="stack"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

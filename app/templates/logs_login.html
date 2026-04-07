@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homie 日志登录</title>
+  <link rel="stylesheet" href="/static/app.css" />
+</head>
+<body class="center-page">
+  <div class="login-card">
+    <div class="brand brand-center">
+      <div class="brand-mark">H</div>
+      <div>
+        <div class="brand-name">Homie</div>
+        <div class="brand-sub">日志安全访问</div>
+      </div>
+    </div>
+    <h2>请输入日志页密码</h2>
+    <p class="muted">输入密码后进入 Homie 日志页面。</p>
+    <input id="password-input" type="password" placeholder="请输入密码" />
+    <div class="actions">
+      <button onclick="loginLogs()">进入日志页</button>
+      <a class="ghost-link" href="/">返回用户操控页</a>
+    </div>
+    <div id="login-result" class="result-box"></div>
+  </div>
+  <script src="/static/logs.js"></script>
+</body>
+</html>
